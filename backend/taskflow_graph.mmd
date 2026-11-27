@@ -1,0 +1,28 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	agent(agent)
+	tool_executor(tool_executor)
+	result_handler(result_handler)
+	error_handler(error_handler)
+	approval_handler(approval_handler)
+	deletion_executor(deletion_executor)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> agent;
+	agent -.-> __end__;
+	agent -.-> tool_executor;
+	approval_handler -.-> agent;
+	approval_handler -.-> deletion_executor;
+	deletion_executor --> result_handler;
+	error_handler --> agent;
+	result_handler -.-> agent;
+	result_handler -.-> approval_handler;
+	result_handler -.-> error_handler;
+	tool_executor --> result_handler;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

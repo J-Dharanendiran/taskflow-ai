@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: taskflow-backend
+    environment:
+      APP_NAME: "TaskFlow AI"
+      APP_VERSION: "0.1.0"
+      ENVIRONMENT: "production"
+      DEBUG: "false"
+      API_V1_PREFIX: "/api/v1"
+      OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+      OLLAMA_MODEL: "${OLLAMA_MODEL:-gemma4:e4b}"
+      OLLAMA_TEMPERATURE: "0.0"
+      DATABASE_URL: "sqlite+aiosqlite:////app/data/taskflow.db"
+    volumes:
+      - ./data:/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health', timeout=5)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: taskflow-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
