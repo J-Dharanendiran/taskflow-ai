@@ -8,8 +8,8 @@ The project is designed as a single-user application and as a practical implemen
 # Working Demo PNGs
 
 <img width="1535" height="694" alt="proof 1" src="https://github.com/user-attachments/assets/d36c7845-72c5-444e-9a86-229de3b60423" />
-<img width="1532" height="695" alt="proof 2" src="https://github.com/user-attachments/assets/1f9b5594-e4e2-4fb4-958c-8298ee6e0a6d" />
 <img width="1534" height="692" alt="proof 3" src="https://github.com/user-attachments/assets/5835e82b-db37-4e24-8231-521aa56f8363" />
+<img width="1532" height="695" alt="proof 2" src="https://github.com/user-attachments/assets/1f9b5594-e4e2-4fb4-958c-8298ee6e0a6d" />
 
 
 ---
